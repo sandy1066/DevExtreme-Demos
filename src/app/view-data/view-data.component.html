@@ -1,0 +1,47 @@
+<div class="container">
+    <h2>List Of Students</h2>
+    <table class="table">
+        <thead>
+            <th>S. No.</th>
+            <th>Student's Name</th>
+            <th>Father's Name</th>
+            <th>Mother's Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Pin Code</th>
+            <th>Mobile Number</th>
+            <th>Skype ID</th>
+            <th>LinkedIn ID</th>
+            <th>E-mail</th>
+            <th>Courses</th>
+            <th>html Value</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of localStudents; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{student.studentName}}</td>
+                <td>{{student.fatherName}}</td>
+                <td>{{student.motherName}}</td>
+                <td>{{student.dateOfBirth}}</td>
+                <td>{{student.gender}}</td>
+                <td>{{student.address}}</td>
+                <td>{{student.city}}</td>
+                <td>{{student.state}}</td>
+                <td>{{student.country}}</td>
+                <td>{{student.pinCode}}</td>
+                <td>{{student.mobileNumber}}</td>
+                <td>{{student.skypeId}}</td>
+                <td>{{student.linkedInId}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.course}}</td>
+                <td>{{student.htmlValue}}</td>
+                <td><a [routerLink]="['/edit',i+1]">Edit</a></td>
+                <td><dx-button (click)="onDelete(i)">X</dx-button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

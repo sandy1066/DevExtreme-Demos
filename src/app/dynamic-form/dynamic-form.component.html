@@ -1,0 +1,15 @@
+<div class="body">
+    <div class="container">
+        <div class="main">
+            <h1>Dynamic Form Rendering</h1>
+            <div>
+                <form (submit)="onSubmit($event)">
+                    <dx-form [items]="formItems" 
+                        [(formData)]="studentData" 
+                        (onFieldDataChanged)="dataChanged($event)">
+                    </dx-form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

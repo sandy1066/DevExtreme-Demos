@@ -1,0 +1,19 @@
+<dx-data-grid
+    [dataSource]="customers">
+    <dxo-editing mode="form"
+        [allowAdding]=true
+        [allowUpdating]=true>
+            <dxo-form>
+                <dxi-item dataField="ID"></dxi-item>
+                <dxi-item dataField="CompanyName"></dxi-item>
+                <dxi-item dataField="date" editorType="dxDateBox"></dxi-item>
+                <dxi-item dataField="Address"></dxi-item>
+                <dxi-item dataField="City"></dxi-item>
+                <dxi-item dataField="State" editorType="dxSelectBox" [editorOptions]="{items: states, displayExpr: 'Name', valueExpr: 'ID'}"></dxi-item>
+                <dxi-item dataField="Zipcode"></dxi-item>
+                <dxi-item dataField="Phone"></dxi-item>
+                <dxi-item dataField="Fax"></dxi-item>
+                <dxi-item dataField="Website"></dxi-item>
+            </dxo-form>
+    </dxo-editing>
+</dx-data-grid>

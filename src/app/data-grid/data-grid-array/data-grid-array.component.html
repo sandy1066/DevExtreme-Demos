@@ -1,0 +1,55 @@
+<dx-data-grid
+    [dataSource]="customers"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [allowColumnReordering]="true"
+    [allowColumnResizing]="true"
+    [rowAlternationEnabled]="true"
+    (onExporting)="exportGrid($event)">
+    <dxi-column dataField="ID"></dxi-column>
+    <dxi-column dataField="CompanyName"></dxi-column>
+    <dxi-column dataField="date" dataType="date"></dxi-column>
+    <dxi-column dataField="Address">
+        <dxo-header-filter [allowSearch]="false"></dxo-header-filter>
+    </dxi-column>
+    <dxi-column dataField="City"></dxi-column>
+    <dxi-column dataField="State">
+        <dxo-lookup
+            [dataSource]="states"
+            displayExpr="Name"
+            valueExpr="ID">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="Zipcode"></dxi-column>
+    <dxi-column dataField="Phone"></dxi-column>
+    <dxi-column dataField="Fax"></dxi-column>
+    <dxi-column dataField="Website" [allowFiltering]="false" [allowHeaderFiltering]="false">
+        <dxo-form-item
+            editorType="dxTextArea">
+        </dxo-form-item>
+    </dxi-column>
+
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-state-storing [enabled]="true" type="localStorage" storageKey="arrayStateStorage"></dxo-state-storing>
+
+    <dxo-editing mode="popup"
+        [allowAdding]=true
+        [allowUpdating]=true
+        [allowDeleting]=true>
+    </dxo-editing>
+
+    <div *dxTemplate="let stateChange of 'stateChanges'">
+        <div class="red" *ngIf="stateChange.data.State==='Illinois'">{{stateChange.data.State}}</div>
+        <div class="green" *ngIf="stateChange.data.State==='Minnesota'">{{stateChange.data.State}}</div>
+        <div class="blue" *ngIf="stateChange.data.State==='Texas'">{{stateChange.data.State}}</div>
+        <div *ngIf="stateChange.data.State==='Washington'">{{stateChange.data.State}}</div>
+        <div *ngIf="stateChange.data.State==='Georgia'">{{stateChange.data.State}}</div>
+        <div *ngIf="stateChange.data.State==='Arkansas'">{{stateChange.data.State}}</div>
+        <div *ngIf="stateChange.data.State==='North Carolina'">{{stateChange.data.State}}</div>
+    </div>
+</dx-data-grid>

@@ -1,0 +1,26 @@
+#dataGrid {
+    height: 500px;
+}
+#app-container {
+    width: full;
+    position: relative;
+}
+.photo{
+    height: 140px;
+    float: left;
+    padding: 20px 20px 20px 0;
+}
+.notes {
+    padding-top: 20px;
+    text-align: justify;
+    white-space: normal;
+}
+.red {
+    color: #c20114;
+}
+.green {
+    color: #3dd297;
+}
+.blue {
+    color: #256eff;
+}

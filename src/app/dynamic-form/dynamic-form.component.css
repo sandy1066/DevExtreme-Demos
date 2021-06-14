@@ -1,0 +1,16 @@
+.body{
+    background-color: rgb(250, 255, 255);
+    display: flex;
+    justify-content: center;
+}
+.container{
+    width: 75%;
+}
+.main{
+    margin-top: 20px;
+}
+h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

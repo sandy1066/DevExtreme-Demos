@@ -1,0 +1,156 @@
+<div class="body">    
+    <div class="container">
+        <div class="main">
+            <form (submit)="onSubmit($event)" action="/view"> 
+                <h2>{{header}}</h2>
+                <h1>Student Registration Form</h1>
+                <div class="form">
+                <dx-form 
+                    [formData]="student"
+                    [showValidationSummary]="true"
+                    validationGroup="studentData">
+                    <dxi-item itemType="group" caption="Personal Details" [colCount]="2">
+                        <dxi-item itemType="group">
+                            <dxi-item dataField="studentName" [isRequired]="true">
+                                <dxi-validation-rule 
+                                    type="pattern" 
+                                    [pattern]="namePattern" 
+                                    message="The name should not contain digits">
+                                </dxi-validation-rule>
+                            </dxi-item>
+                            <dxi-item>
+                                <dxo-label text="Father Name"></dxo-label>
+                                <dx-text-box [(value)]="student.fatherName"></dx-text-box>
+                            </dxi-item>
+                            <dxi-item>
+                                <dxo-label text="Mother Name"></dxo-label>
+                                <dx-text-box [(value)]="student.motherName"></dx-text-box>
+                            </dxi-item>
+                        </dxi-item>
+                        <dxi-item itemType="group">
+                            <dxi-item>
+                                <dxo-label text="Date Of Birth"></dxo-label>
+                                <dx-date-box
+                                    [(value)]="student.dateOfBirth"
+                                    [max]="now"
+                                    type="date"
+                                    [showClearButton]="true">
+                                </dx-date-box>
+                            </dxi-item>
+                            <dxi-item 
+                                dataField="gender" 
+                                editorType="dxRadioGroup" 
+                                [editorOptions]="{items: gender, layout: 'horizontal'}" >
+                            </dxi-item>
+                            <dxi-item>
+                                <dxo-label text="Upload Profile Photo" cssClass="photo"></dxo-label>
+                                <dx-file-uploader 
+                                    selectButtonText="Upload"
+                                    labelText=""
+                                    accept="image/*"
+                                    [(value)]="student.uploaded"
+                                    uploadMode="useForm">
+                                </dx-file-uploader>
+                            </dxi-item>
+                        </dxi-item>
+                    </dxi-item>
+
+                    <dxi-item itemType="group" caption="Contact Details" [colCount]="2">
+                        <dxi-item itemType="group" caption="Home Address">
+                            <dxi-item dataField="address" 
+                                editorType="dxTextArea" 
+                                [editorOptions]="{ placeholder: 'Add address...'}">
+                            </dxi-item>
+                            <dxi-item dataField="pinCode">
+                                <dxi-validation-rule 
+                                    type="numeric" 
+                                    message="This field should contain numbers !">
+                                </dxi-validation-rule>
+                            </dxi-item>
+                            <dxi-item dataField="city">
+                                <dxi-validation-rule type="required" message="City is required"></dxi-validation-rule>
+                            </dxi-item>
+                            <dxi-item dataField="state">
+                                <dxi-validation-rule type="required" message="State is required"></dxi-validation-rule>
+                            </dxi-item>
+                            <dxi-item dataField="country" editorType="dxSelectBox" [editorOptions]="{items: country, value: ''}">
+                                <dxi-validation-rule type="required" message="Country is required"></dxi-validation-rule>
+                            </dxi-item>
+                        </dxi-item>
+                        <dxi-item itemType="group" caption="Reach Me Here">
+                            <dxi-item itemType="tabbed">
+                                <dxo-tab-panel-options [deferRendering]="false"></dxo-tab-panel-options>
+                                <dxi-tab title="Phone">
+                                    <dxi-item dataField="mobileNumber">
+                                        <dxi-validation-rule 
+                                            type="numeric" 
+                                            message="This field should only contain numbers !">
+                                        </dxi-validation-rule>
+                                        <dxi-validation-rule
+                                            type="pattern"
+                                            message="Phone number must be 10 characters"
+                                            [pattern]="phonePattern">
+                                        </dxi-validation-rule>
+                                    </dxi-item>
+                                </dxi-tab>
+                                <dxi-tab title="Skype">
+                                    <dxi-item dataField="skypeId"></dxi-item>
+                                </dxi-tab>
+                                <dxi-tab title="LinkedIn">
+                                    <dxi-item dataField="linkedInId"></dxi-item>
+                                </dxi-tab>
+                            </dxi-item>
+                        </dxi-item>
+                    </dxi-item>
+
+                    <dxi-item>
+                        <dx-check-box text="Check this to add academic details" [(value)]="isActive"></dx-check-box>
+                    </dxi-item>
+                    <dxi-item itemType="group" caption="Academic Details">
+                        <dxi-item>
+                            <dxo-label text="Course"></dxo-label>
+                            <dx-select-box
+                                [items]="course"
+                                [(value)]="student.course"
+                                [disabled]="!isActive">
+                            </dx-select-box>
+                        </dxi-item>
+                        <dxi-item dataField="html Editor">
+                            <dx-html-editor valueType="html" height="200px" [(value)]="student.htmlValue" [disabled]="!isActive">
+                                <dxo-toolbar>
+                                    <dxi-item formatName="size" 
+                                        [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']"></dxi-item>
+                                    <dxi-item formatName="font" 
+                                        [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']"></dxi-item>
+                                    <dxi-item formatName="separator"></dxi-item>
+                                    <dxi-item formatName="bold"></dxi-item>
+                                    <dxi-item formatName="italic"></dxi-item>
+                                    <dxi-item formatName="strike"></dxi-item>
+                                    <dxi-item formatName="underline"></dxi-item>
+                                </dxo-toolbar>
+                            </dx-html-editor>
+                        </dxi-item>
+                    </dxi-item>
+
+                    <dxi-item itemType="group" caption="Credentials">
+                        <dxi-item dataField="email">
+                            <dxi-validation-rule type="required" message="E-mail is required"></dxi-validation-rule>
+                            <dxi-validation-rule type="email" message="This is not a valid email !" [reevaluate]="true"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item dataField="password" [editorOptions]="{mode: 'password'}">
+                            <dxi-validation-rule type="required" message="Password is required"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item editorType="dxTextBox" [editorOptions]="{mode: 'password'}">
+                            <dxo-label text="Confirm Password"></dxo-label>
+                            <dxi-validation-rule type="required" message="Password confirmation is required"></dxi-validation-rule>
+                            <dxi-validation-rule type="compare" [comparisonTarget]="passCompare" message="Password did not match"></dxi-validation-rule>
+                        </dxi-item>
+                    </dxi-item>
+
+                    <dxi-item itemType="button" [buttonOptions]="submitButtonOption" horizontalAlignment="center"></dxi-item>
+                </dx-form>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
